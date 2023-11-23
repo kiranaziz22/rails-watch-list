@@ -1,0 +1,10 @@
+<div class="banner">
+<img src="https://northernvirginiamag.com/wp-content/uploads/2020/08/movie-popcorn.jpg" alt="background" width="1200" height="400">
+<h1>Movies List</h1></div>
+<ul>
+  <% @lists.each do |list| %>
+  <li>
+  <%= link_to list.name, list_path(list.id) %>
+ </li>
+ <% end %>
+</ul>
