@@ -1,6 +1,9 @@
 <h2><%= @list.name %></h2>
 <%= link_to "Create a bookmark", new_list_bookmark_path(@list) %>
 <ul class="list-group">
+<% @list.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, radius: 5 %>
+<% end %>
   <% @list.bookmarks.each do |bookmark| %>
     <li class="list-group-item"><%= bookmark.comment %>, movie: <%= bookmark.movie.title %>
     <%= link_to "Delete",
@@ -11,4 +14,8 @@
   <% end %>
 </ul>
 <br>
-<%= link_to "Check All Movies List", lists_path %>
+<button type="button" class="btn btn-danger"><%= link_to "Check All Movies List", lists_path %></button>
+<%= link_to "Delete",
+  list_path(@list),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>
